@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\MFC\\mfcExam\\gSolution\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{21347B74-DCAC-4ECB-B4A8-75062AC556B9}|gPrj\\gPrj.vcxproj|C:\\MFC\\mfcExam\\gSolution\\gPrj\\gPrjDlg.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{21347B74-DCAC-4ECB-B4A8-75062AC556B9}|gPrj\\gPrj.vcxproj|solutionrelative:gPrj\\gPrjDlg.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{21347B74-DCAC-4ECB-B4A8-75062AC556B9}|gPrj\\gPrj.vcxproj|C:\\MFC\\mfcExam\\gSolution\\gPrj\\CDlgImage.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{21347B74-DCAC-4ECB-B4A8-75062AC556B9}|gPrj\\gPrj.vcxproj|solutionrelative:gPrj\\CDlgImage.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -26,17 +30,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "gPrj.h",
+              "DocumentMoniker": "C:\\MFC\\mfcExam\\gSolution\\gPrj\\gPrj.h",
+              "RelativeDocumentMoniker": "gPrj\\gPrj.h",
+              "ToolTip": "C:\\MFC\\mfcExam\\gSolution\\gPrj\\gPrj.h",
+              "RelativeToolTip": "gPrj\\gPrj.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-18T05:01:59.583Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "gPrjDlg.cpp",
+              "DocumentMoniker": "C:\\MFC\\mfcExam\\gSolution\\gPrj\\gPrjDlg.cpp",
+              "RelativeDocumentMoniker": "gPrj\\gPrjDlg.cpp",
+              "ToolTip": "C:\\MFC\\mfcExam\\gSolution\\gPrj\\gPrjDlg.cpp",
+              "RelativeToolTip": "gPrj\\gPrjDlg.cpp",
+              "ViewState": "AgIAAL0AAAAAAAAAAAAAANIAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-18T04:54:08.607Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "CDlgImage.cpp",
               "DocumentMoniker": "C:\\MFC\\mfcExam\\gSolution\\gPrj\\CDlgImage.cpp",
               "RelativeDocumentMoniker": "gPrj\\CDlgImage.cpp",
               "ToolTip": "C:\\MFC\\mfcExam\\gSolution\\gPrj\\CDlgImage.cpp",
               "RelativeToolTip": "gPrj\\CDlgImage.cpp",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAE4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-18T03:41:53.381Z",
               "EditorCaption": ""
@@ -44,40 +74,26 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "gPrj.h",
-              "DocumentMoniker": "C:\\MFC\\mfcExam\\gSolution\\gPrj\\gPrj.h",
-              "RelativeDocumentMoniker": "gPrj\\gPrj.h",
-              "ToolTip": "C:\\MFC\\mfcExam\\gSolution\\gPrj\\gPrj.h",
-              "RelativeToolTip": "gPrj\\gPrj.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-18T03:41:44.572Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "CDlgImage.h",
               "DocumentMoniker": "C:\\MFC\\mfcExam\\gSolution\\gPrj\\CDlgImage.h",
               "RelativeDocumentMoniker": "gPrj\\CDlgImage.h",
               "ToolTip": "C:\\MFC\\mfcExam\\gSolution\\gPrj\\CDlgImage.h",
               "RelativeToolTip": "gPrj\\CDlgImage.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-11-18T03:41:31.964Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "gPrj.rc - IDD_GPRJ_DIALOG - Dialog",
               "DocumentMoniker": "C:\\MFC\\mfcExam\\gSolution\\gPrj\\gPrj.rc",
               "RelativeDocumentMoniker": "gPrj\\gPrj.rc",
               "ToolTip": "C:\\MFC\\mfcExam\\gSolution\\gPrj\\gPrj.rc - IDD_GPRJ_DIALOG - Dialog",
               "RelativeToolTip": "gPrj\\gPrj.rc - IDD_GPRJ_DIALOG - Dialog",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2024-11-18T03:40:59.97Z",
-              "EditorCaption": " - IDD_GPRJ_DIALOG - Dialog"
+              "WhenOpened": "2024-11-18T03:40:59.97Z"
             }
           ]
         }
