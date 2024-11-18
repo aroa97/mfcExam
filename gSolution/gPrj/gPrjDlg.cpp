@@ -72,6 +72,9 @@ BEGIN_MESSAGE_MAP(CgPrjDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_WM_DESTROY()
 	ON_BN_CLICKED(IDC_BTN_TEST, &CgPrjDlg::OnBnClickedBtnTest)
+	ON_BN_CLICKED(IDC_BTN_PROCESS, &CgPrjDlg::OnBnClickedBtnProcess)
+	ON_BN_CLICKED(IDC_BTN_MAKE_PATTEN, &CgPrjDlg::OnBnClickedBtnMakePatten)
+	ON_BN_CLICKED(IDC_BTN_GET_DATA, &CgPrjDlg::OnBnClickedBtnGetData)
 END_MESSAGE_MAP()
 
 
@@ -205,15 +208,15 @@ void CgPrjDlg::OnBnClickedBtnTest()
 	}
 
 	int nIndex = 0;
+	int nTh = 100;
 	for (int j = 0; j < nHeight; j++) {
 		for (int i = 0; i < nWidth; i++) {
-			if (fm[j * nPitch + i] >= MAX_POINT) {
+			if (fm[j * nPitch + i] > nTh) {
 				if (m_pDlgImgResult->m_nDataCount < MAX_POINT) {
-					cout << nIndex << ':' << i << ',' << j << endl;
+					//cout << nIndex << ':' << i << ',' << j << endl;
 					m_pDlgImgResult->m_ptData[nIndex].x = i;
 					m_pDlgImgResult->m_ptData[nIndex].y = j;
 					m_pDlgImgResult->m_nDataCount = ++nIndex;
-					
 				}
 			}
 		}
@@ -221,4 +224,65 @@ void CgPrjDlg::OnBnClickedBtnTest()
 
 	m_pDlgImage->Invalidate();
 	m_pDlgImgResult->Invalidate();
+}
+
+#include "Process.h"
+#include <chrono>
+void CgPrjDlg::OnBnClickedBtnProcess()
+{
+	CProcess process;
+
+	auto start = std::chrono::system_clock::now();
+	int nRet = process.getStarInfo(&m_pDlgImage->m_Image);
+	auto end = std::chrono::system_clock::now();
+	auto millisec = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+
+	cout << nRet << "\t" << millisec.count() << "ms" << endl;
+}
+
+
+void CgPrjDlg::OnBnClickedBtnMakePatten()
+{
+	unsigned char* fm = (unsigned char*)m_pDlgImage->m_Image.GetBits();
+	int nWidth = m_pDlgImage->m_Image.GetWidth();
+	int nHeight = m_pDlgImage->m_Image.GetHeight();
+	int nPitch = m_pDlgImage->m_Image.GetPitch();
+	memset(fm, 0, nWidth * nHeight);
+
+
+	CRect rect(100, 100, 200, 200);
+	for (int j = rect.top; j < rect.bottom; j++) {
+		for (int i = rect.left; i < rect.right; i++) {
+			fm[j * nPitch + i] = rand() % 0xff;
+		}
+	}
+	m_pDlgImage->Invalidate();
+}
+
+
+void CgPrjDlg::OnBnClickedBtnGetData()
+{
+	unsigned char* fm = (unsigned char*)m_pDlgImage->m_Image.GetBits();
+	int nWidth = m_pDlgImage->m_Image.GetWidth();
+	int nHeight = m_pDlgImage->m_Image.GetHeight();
+	int nPitch = m_pDlgImage->m_Image.GetPitch();
+
+	int nTh = 0x80;
+	CRect rect(0, 0, nWidth, nHeight);
+	int nSumX = 0;
+	int nSumY = 0;
+	int nCount = 0;
+	for (int j = rect.top; j < rect.bottom; j++) {
+		for (int i = rect.left; i < rect.right; i++) {
+			if (fm[j * nPitch + i] > nTh) {
+				nSumX += i;
+				nSumY += j;
+				nCount++;
+			}
+		}
+	}
+	double dCenterX = (nCount > 0) ? (double)nSumX / nCount : nSumX;
+	double dCenterY = (nCount > 0) ? (double)nSumY / nCount : nSumY;
+
+	cout << dCenterX << "\t" << dCenterY << endl;
 }
