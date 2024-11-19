@@ -9,7 +9,7 @@
 #include "afxdialogex.h"
 
 #include <iostream>
-using namespace std;
+//using namespace std;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -75,6 +75,7 @@ BEGIN_MESSAGE_MAP(CgPrjDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BTN_PROCESS, &CgPrjDlg::OnBnClickedBtnProcess)
 	ON_BN_CLICKED(IDC_BTN_MAKE_PATTEN, &CgPrjDlg::OnBnClickedBtnMakePatten)
 	ON_BN_CLICKED(IDC_BTN_GET_DATA, &CgPrjDlg::OnBnClickedBtnGetData)
+	ON_BN_CLICKED(IDC_BTN_THREAD, &CgPrjDlg::OnBnClickedBtnThread)
 END_MESSAGE_MAP()
 
 
@@ -188,7 +189,7 @@ void CgPrjDlg::OnDestroy()
 void CgPrjDlg::callFunc(int n) 
 {
 	// int nData = n;
-	cout << n << endl;
+	std::cout << n << std::endl;
 }
 
 
@@ -228,6 +229,7 @@ void CgPrjDlg::OnBnClickedBtnTest()
 
 #include "Process.h"
 #include <chrono>
+
 void CgPrjDlg::OnBnClickedBtnProcess()
 {
 	CProcess process;
@@ -237,7 +239,7 @@ void CgPrjDlg::OnBnClickedBtnProcess()
 	auto end = std::chrono::system_clock::now();
 	auto millisec = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 
-	cout << nRet << "\t" << millisec.count() << "ms" << endl;
+	std::cout << nRet << "\t" << millisec.count() << "ms" << std::endl;
 }
 
 
@@ -284,5 +286,65 @@ void CgPrjDlg::OnBnClickedBtnGetData()
 	double dCenterX = (nCount > 0) ? (double)nSumX / nCount : nSumX;
 	double dCenterY = (nCount > 0) ? (double)nSumY / nCount : nSumY;
 
-	cout << dCenterX << "\t" << dCenterY << endl;
+	std::cout << dCenterX << "\t" << dCenterY << std::endl;
+}
+
+#include <thread>
+void threadProcess(CWnd* pParent, CRect rect, int* nRet)
+{
+	CgPrjDlg* pWnd = (CgPrjDlg*)pParent;
+	*nRet = pWnd->processImg(rect);
+}
+
+void CgPrjDlg::OnBnClickedBtnThread()
+{
+	auto start = std::chrono::system_clock::now();
+
+	int nImgSize = 4096 * 4;
+	CRect rect(0,0,nImgSize,nImgSize);
+	CRect rt[4];
+	int nRet[4] = {0,0,0,0};
+	for (int k = 0; k < 4; k++) {
+		rt[k] = rect;
+		rt[k].OffsetRect(nImgSize * (k % 2), nImgSize * int(k / 2));
+	}
+
+	std::thread _thread0(threadProcess, this, rt[0], &nRet[0]);
+	std::thread _thread1(threadProcess, this, rt[1], &nRet[1]);
+	std::thread _thread2(threadProcess, this, rt[2], &nRet[2]);
+	std::thread _thread3(threadProcess, this, rt[3], &nRet[3]);
+
+	/*_thread0.join();
+	_thread1.join();
+	_thread2.join();
+	_thread3.join();*/
+
+	_thread0.detach();
+	_thread1.detach();
+	_thread2.detach();
+	_thread3.detach();
+
+	int nSum = 0;
+	for (int i = 0; i < 4; i++)
+		nSum += nRet[i];
+
+
+	auto end = std::chrono::system_clock::now();
+	auto millisec = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+	std::cout << "main::" << nSum << '\t' << millisec.count() * 0.001 << "sec" << std::endl;
+}
+
+int CgPrjDlg::processImg(CRect rect)
+{
+	auto start = std::chrono::system_clock::now();
+
+	CProcess process;
+
+	int nRet = process.getStarInfo(&m_pDlgImage->m_Image, 0, rect);
+
+	auto end = std::chrono::system_clock::now();
+	auto millisec = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+	std::cout << "thread:" << nRet << '\t' << millisec.count() * 0.001 << "sec" << std::endl;
+
+	return nRet;
 }

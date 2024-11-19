@@ -2,3 +2,4 @@
 *.aps
 x64/
 ipch/
+.vs/
